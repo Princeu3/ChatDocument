@@ -73,11 +73,11 @@ export function ChatMessage({ message, isStreaming = false }: ChatMessageProps) 
         )}
 
         {/* Message content */}
-        <div className="prose prose-sm dark:prose-invert max-w-none">
+        <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-3 prose-headings:mt-6 prose-headings:mb-3 prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-hr:my-6">
           <ReactMarkdown
             components={{
               pre: ({ children }) => (
-                <pre className="overflow-x-auto rounded-lg bg-muted p-4">
+                <pre className="overflow-x-auto rounded-lg bg-muted p-4 my-4">
                   {children}
                 </pre>
               ),
@@ -96,6 +96,33 @@ export function ChatMessage({ message, isStreaming = false }: ChatMessageProps) 
                   </code>
                 );
               },
+              p: ({ children }) => (
+                <p className="my-3 leading-relaxed">{children}</p>
+              ),
+              h1: ({ children }) => (
+                <h1 className="text-xl font-bold mt-6 mb-3">{children}</h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-lg font-bold mt-5 mb-2">{children}</h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-base font-semibold mt-4 mb-2">{children}</h3>
+              ),
+              ul: ({ children }) => (
+                <ul className="my-3 ml-4 list-disc space-y-2">{children}</ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="my-3 ml-4 list-decimal space-y-2">{children}</ol>
+              ),
+              li: ({ children }) => (
+                <li className="leading-relaxed">{children}</li>
+              ),
+              blockquote: ({ children }) => (
+                <blockquote className="border-l-4 border-muted-foreground/30 pl-4 my-4 italic">
+                  {children}
+                </blockquote>
+              ),
+              hr: () => <hr className="my-6 border-muted-foreground/20" />,
             }}
           >
             {message.content}

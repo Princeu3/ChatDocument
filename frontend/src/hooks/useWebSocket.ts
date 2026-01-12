@@ -35,7 +35,9 @@ function createWebSocketManager() {
 
   function subscribe(listener: () => void) {
     listeners.add(listener);
-    return () => listeners.delete(listener);
+    return () => {
+      listeners.delete(listener);
+    };
   }
 
   function notifyListeners() {
@@ -44,7 +46,9 @@ function createWebSocketManager() {
 
   function addMessageListener(listener: (msg: WebSocketMessage) => void) {
     messageListeners.add(listener);
-    return () => messageListeners.delete(listener);
+    return () => {
+      messageListeners.delete(listener);
+    };
   }
 
   function connect() {

@@ -10,6 +10,13 @@ class Settings:
     SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
     SUPABASE_SERVICE_KEY: str = os.getenv("SUPABASE_SERVICE_KEY", "")
 
+    # CORS settings - comma-separated list of allowed origins
+    CORS_ORIGINS: list = [
+        origin.strip()
+        for origin in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+        if origin.strip()
+    ]
+
     # Gemini model configuration
     GEMINI_MODEL: str = "gemini-3-pro-preview"
 

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Conversation } from "@/types/chat";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -84,12 +83,12 @@ export function ConversationSidebar({
         </Button>
       </div>
 
-      <ScrollArea className="flex-1 px-2">
+      <div className="flex-1 overflow-y-auto px-2">
         <div className="space-y-1 pb-4">
           {conversations.map((conversation) => (
             <div
               key={conversation.id}
-              className={`group flex items-center gap-1 rounded-lg px-2 py-2 text-sm transition-colors hover:bg-accent ${
+              className={`group flex items-center gap-1 rounded-lg pl-2 pr-1 py-2 text-sm transition-colors hover:bg-accent ${
                 currentConversationId === conversation.id
                   ? "bg-accent"
                   : ""
@@ -97,7 +96,7 @@ export function ConversationSidebar({
             >
               <button
                 onClick={() => onSelectConversation(conversation.id)}
-                className="flex min-w-0 flex-1 items-center gap-2 text-left"
+                className="flex min-w-0 flex-1 items-center gap-2 text-left overflow-hidden"
               >
                 <MessageSquare className="h-4 w-4 shrink-0" />
                 <span className="truncate">{conversation.title}</span>
@@ -115,7 +114,7 @@ export function ConversationSidebar({
                     <MoreVertical className="h-4 w-4" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" side="right">
+                <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => openRenameDialog(conversation)}>
                     <Pencil className="mr-2 h-4 w-4" />
                     Rename
@@ -132,7 +131,7 @@ export function ConversationSidebar({
             </div>
           ))}
         </div>
-      </ScrollArea>
+      </div>
 
       {/* Rename Dialog */}
       <Dialog open={renameDialogOpen} onOpenChange={setRenameDialogOpen}>

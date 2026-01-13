@@ -89,7 +89,7 @@ export function ConversationSidebar({
           {conversations.map((conversation) => (
             <div
               key={conversation.id}
-              className={`group flex items-center rounded-lg px-3 py-2 text-sm transition-colors hover:bg-accent ${
+              className={`group flex items-center gap-1 rounded-lg px-2 py-2 text-sm transition-colors hover:bg-accent ${
                 currentConversationId === conversation.id
                   ? "bg-accent"
                   : ""
@@ -97,7 +97,7 @@ export function ConversationSidebar({
             >
               <button
                 onClick={() => onSelectConversation(conversation.id)}
-                className="flex flex-1 items-center gap-2 truncate text-left"
+                className="flex min-w-0 flex-1 items-center gap-2 text-left"
               >
                 <MessageSquare className="h-4 w-4 shrink-0" />
                 <span className="truncate">{conversation.title}</span>
@@ -105,19 +105,17 @@ export function ConversationSidebar({
 
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`h-6 w-6 shrink-0 ${
+                  <button
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md hover:bg-accent-foreground/10 ${
                       currentConversationId === conversation.id
                         ? "opacity-100"
                         : "opacity-0 group-hover:opacity-100"
                     }`}
                   >
                     <MoreVertical className="h-4 w-4" />
-                  </Button>
+                  </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" side="right">
                   <DropdownMenuItem onClick={() => openRenameDialog(conversation)}>
                     <Pencil className="mr-2 h-4 w-4" />
                     Rename
